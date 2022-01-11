@@ -1,0 +1,85 @@
+﻿@page
+@model TaskApp.Pages.SaveTaskModel
+
+<style>
+    input:focus, textarea:focus, select:focus {
+        border-color: rgba(126, 239, 104, 0.8) !important;
+        box-shadow: 0 1px 1px rgba(0,128,0, 0.075) inset, 0 0 8px rgba(0,128,0, 0.6) !important;
+        outline: 0 none !important;
+    }
+
+    .form-group {
+        padding-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="row" style="border:2px solid green;border-radius:10px;">
+        <h1 style="text-align:center">Save Task</h1>
+        <form method="post">
+            <div class="form-group">
+                <label>Company ID</label>
+                <select asp-for="Taask.TSK_COMID" class="form-select" aria-label="Default select example">
+                    <option value="KFL">KFL</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="taskID">Task ID</label>
+                <input asp-for="Taask.TSK_ID" type="text" class="form-control" id="taskID" required>
+            </div>
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input asp-for="Taask.TSK_STDATE" type="date" class="form-control" id="startDate" placeholder="Task Start Date" required>
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input asp-for="Taask.TSK_ENDATE" type="date" class="form-control" id="endDate" placeholder="Task End Date" required>
+            </div>
+            <div class="form-group">
+                <label>Assign User</label>
+                <select asp-for="Taask.TSK_ASSUSER" class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    @if (Model.Users.Count() > 0)
+                    {
+        @foreach (var item in Model.Users)
+        {
+<option>@Html.DisplayFor(m => item.USR_ID)</option>
+}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="taskDescription">Task</label>
+                <textarea asp-for="Taask.TSK_DESC" class="form-control rounded-1" id="taskDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="formFile" class="form-label"></label>
+                <input asp-for="Taask.TSK_SUPFILE" class="form-control" type="file" id="formFile" required>
+            </div>
+            <div class="form-group">
+                <label>Priority</label>
+                <select asp-for="Taask.TSK_PRIORITY" class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="createUser">Create User</label>
+                <input asp-for="Taask.TSK_CREATEUSER" type="text" class="form-control" id="createUser" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" value="Create" class="btn btn-success">Submit</button>
+                <button type="reset" class="btn btn-warning">Clear</button>
+            </div>
+            <br />
+        </form>
+    </div>
+</div>

@@ -14,7 +14,7 @@ namespace TaskApp.Pages.Account
         public Credantial Credantial { get; set; }
         public void OnGet()
         {
-            this.Credantial = new Credantial { UserName = "Admin" };
+            //this.Credantial = new Credantial { UserName = "Admin" };
         }
 
         public void OnPost()
@@ -26,6 +26,7 @@ namespace TaskApp.Pages.Account
     public class Credantial
     {
         [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]

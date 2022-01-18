@@ -25,10 +25,17 @@ namespace TaskApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options => 
+            services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
             {
                 options.Cookie.Name = "MyCookieAuth";
+                options.AccessDeniedPath = "/Account/AccessDenied";
             });
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("MustBelongToHRDepartment",
+                    policy => policy.RequireClaim("Department", "HR"));
+            });
+
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
         }

@@ -30,7 +30,8 @@ namespace TaskApp.Pages.Account
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
                     new Claim("Department", "HR"),
-                    new Claim("Admin", "")
+                    new Claim("Admin", ""),
+                    new Claim("Manager", "True")
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

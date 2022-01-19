@@ -32,8 +32,11 @@ namespace TaskApp
             });
 
             services.AddAuthorization(options => {
+                options.AddPolicy("AdminOnly",
+                    policy => policy.RequireClaim("Admin", "True"));
+
                 options.AddPolicy("MustBelongToHRDepartment",
-                    policy => policy.RequireClaim("Department", "HR"));
+                    policy => policy.RequireClaim("Department", "HR"));               
             });
 
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

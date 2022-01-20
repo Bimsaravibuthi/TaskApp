@@ -21,11 +21,9 @@ namespace TaskApp.Pages
         }
 
         public IEnumerable<User> Users { get; set; }
-        public IEnumerable<Credantial> Credantials { get; set; }
         public async Task OnGet()
         {
             Users = await _db.User.ToListAsync();
-            Credantials = Credantials.ToList();
         }
 
         [BindProperty]

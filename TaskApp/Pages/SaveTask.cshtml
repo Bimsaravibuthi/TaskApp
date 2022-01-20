@@ -41,9 +41,9 @@
                     <option selected>Open this select menu</option>
                     @if (Model.Users.Count() > 0)
                     {
-                        @foreach (var item in Model.Credantials)
+                        @foreach (var item in Model.Users)
                         {
-                            <option>@Html.DisplayFor(m => item.UserName)</option>
+                            <option>@User.FindFirst("User_ID").Value</option>
                         }
                     }
                 </select>
@@ -75,7 +75,7 @@
 
                 <div class="form-group">
                     <label for="createUser">Create User</label>
-                    <input asp-for="Taask.TSK_CREATEUSER" type="text" class="form-control" id="createUser" value="#" readonly>
+                    <input asp-for="Taask.TSK_CREATEUSER" type="text" class="form-control" id="createUser" value="" readonly>
                 </div>
 
             <div class="form-group">

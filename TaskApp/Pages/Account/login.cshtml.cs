@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TaskApp.Models;
 
 namespace TaskApp.Pages.Account
 {
@@ -30,11 +29,10 @@ namespace TaskApp.Pages.Account
 
             if (Credantial.UserName == "admin" && Credantial.Password == "password")
             {
-                Cooki.Coo_ID = "KFL001";
-
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
+                    new Claim("User_ID", "KFL001"),
                     new Claim("Department", "HR"),
                     new Claim("Admin", ""),
                     new Claim("Manager", "")

@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TaskApp.Models;
+using TaskApp.Pages.Account;
 
 namespace TaskApp.Pages
 {
@@ -19,9 +21,11 @@ namespace TaskApp.Pages
         }
 
         public IEnumerable<User> Users { get; set; }
+        public IEnumerable<Credantial> Credantials { get; set; }
         public async Task OnGet()
         {
             Users = await _db.User.ToListAsync();
+            Credantials = Credantials.ToList();
         }
 
         [BindProperty]

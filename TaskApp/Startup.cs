@@ -29,14 +29,15 @@ namespace TaskApp
             {
                 options.Cookie.Name = "MyCookieAuth";
                 options.AccessDeniedPath = "/Account/AccessDenied";
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(15);
             });
 
             services.AddAuthorization(options => {
-                options.AddPolicy("AdminOnly",
-                    policy => policy.RequireClaim("Admin", "True"));
+                options.AddPolicy("AdminOnly", policy => policy
+                    .RequireClaim("Admin", "True"));
 
-                options.AddPolicy("MustBelongToHRDepartment",
-                    policy => policy.RequireClaim("Department", "HR"));
+                options.AddPolicy("MustBelongToHRDepartment", policy => policy
+                    .RequireClaim("Department", "HR"));
 
                 options.AddPolicy("HRManagerOnly", policy => policy
                     .RequireClaim("Department", "HR")

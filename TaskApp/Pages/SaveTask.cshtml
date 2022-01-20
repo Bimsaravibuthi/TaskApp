@@ -43,7 +43,7 @@
                     {
                         @foreach (var item in Model.Users)
                         {
-                            <option>@User.FindFirst("User_ID").Value</option>
+                            <option>@Html.DisplayFor(m => item.USR_ID)</option>
                         }
                     }
                 </select>
@@ -75,7 +75,7 @@
 
                 <div class="form-group">
                     <label for="createUser">Create User</label>
-                    <input asp-for="Taask.TSK_CREATEUSER" type="text" class="form-control" id="createUser" value="" readonly>
+                    <input asp-for="Taask.TSK_CREATEUSER" type="text" class="form-control" id="createUser" value="@User.FindFirst("User_ID").Value" readonly>
                 </div>
 
             <div class="form-group">

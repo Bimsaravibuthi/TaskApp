@@ -18,12 +18,12 @@
         <h1 style="text-align:center">Create User</h1>
         <form method="post">
 
-            @*@if (Model.Users.Count() > 0)
+            @*@if (Model.tbl_Users.Count() > 0)
                 {
                 <table class="table table-striped border">
                     <tr class="table-secondary">
                         <th>
-                            <label asp-for="Users.FirstOrDefault().USR_NIC"></label>
+                            <label asp-for="tbl_Users.FirstOrDefault().USR_NIC"></label>
                         </th>
                         <th>
                             <label asp-for="Users.FirstOrDefault().USR_NAMEFULL"></label>
@@ -48,19 +48,19 @@
                 }*@
             <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input asp-for="User.USR_NAMEFULL" type="text" class="form-control" id="fullName" placeholder="Enter Full Name" required>
+                <input asp-for="tbl_User.USR_NAMEFULL" type="text" class="form-control" id="fullName" placeholder="Enter Full Name" required>
             </div>
             <div class="form-group">
                 <label for="userNIC">NIC Number</label>
-                <input asp-for="User.USR_NIC" type="text" class="form-control" id="userNIC" placeholder="Enter NIC Number" required>
+                <input asp-for="tbl_User.USR_NIC" type="text" class="form-control" id="userNIC" placeholder="Enter NIC Number" required>
             </div>
             <div class="form-group">
                 <label for="userID">User ID</label>
-                <input asp-for="User.USR_ID" type="text" class="form-control" id="userID" placeholder="Enter User ID" required>
+                <input asp-for="tbl_User.USR_ID" type="text" class="form-control" id="userID" placeholder="Enter User ID" required>
             </div>
             <div class="form-group">
                 <label>User Level</label>
-                <select asp-for="User.USR_LEVEL" class="form-select" aria-label="Default select example">
+                <select asp-for="tbl_User.USR_LEVEL" class="form-select" aria-label="Default select example">
                     <option selected>Open this select menu</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

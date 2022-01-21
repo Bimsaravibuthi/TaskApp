@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskApp.Models
 {
-    public class Taask
+    public class tbl_Taask
     {
         [Key]
         public string TSK_COMID { get; set; }

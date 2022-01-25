@@ -14,5 +14,7 @@ namespace TaskApp.Models
         }
         public DbSet<tbl_User> tbl_User { get; set; }
         public DbSet<tbl_Taask> tbl_Taask { get; set; }
+        public virtual DbSet<login> login { get; set; }
+
     }
 }

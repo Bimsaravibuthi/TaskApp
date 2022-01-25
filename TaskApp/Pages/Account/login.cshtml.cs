@@ -8,15 +8,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using TaskApp.Models;
 
 namespace TaskApp.Pages.Account
 {
     public class loginModel : PageModel
     {
+        private readonly ApplicationDbContext _db;
+
+        public loginModel(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
         [BindProperty]
         public Credantial Credantial { get; set; }
-        [BindProperty]
-        public Cooki Cooki { get; set; }
 
         public void OnGet()
         {
@@ -29,7 +37,8 @@ namespace TaskApp.Pages.Account
 
             if (!ModelState.IsValid) return Page();
 
-            if (Credantial.UserName == "admin" && Credantial.Password == "password")
+            //if (Credantial.UserName == "admin" && Credantial.Password == "password")
+            if(userValidate(Credantial.UserName, Credantial.Password))
             {
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, "admin"),
@@ -48,6 +57,13 @@ namespace TaskApp.Pages.Account
             }
             return Page();
         }
+
+        public bool userValidate(string _emai, string _passwd)
+        {
+            //var result = _db.login.FromSql($ "SELECT * FROM dbo.Usr_Login");
+
+            return true;
+        }
     }
 
     public class Credantial
@@ -59,10 +75,5 @@ namespace TaskApp.Pages.Account
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-    }
-
-    public class Cooki
-    {
-        public string Coo_ID { get; set; }
     }
 }

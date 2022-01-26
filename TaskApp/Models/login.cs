@@ -9,6 +9,7 @@ namespace TaskApp.Models
     public class login
     {
         [Key]
-        public string USR_NAMEFULL { get; set; }
+        public string USR_ID { get; set; }
+        public string USR_PASSWORD { get; set; }
     }
 }

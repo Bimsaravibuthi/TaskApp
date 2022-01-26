@@ -43,10 +43,10 @@ namespace TaskApp.Pages.Account
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
-                    new Claim("User_ID", "KFL001"),
+                    new Claim("User_ID", Credantial.UserName),
                     new Claim("Department", "HR"),
-                    new Claim("Admin", ""),
-                    new Claim("Manager", "")
+                    new Claim("Admin", "True"),
+                    new Claim("Manager", "True")
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
@@ -60,9 +60,27 @@ namespace TaskApp.Pages.Account
 
         public bool userValidate(string _emai, string _passwd)
         {
-            var result = _db.login.FromSqlRaw("[dbo].[Usr_Login]{0},{1}", _emai, _passwd).ToList();
-            Console.WriteLine("dddddddddddddddddddddddddddddddddddddddddddd" + result[0].USR_NAMEFULL);
-            return true;
+            try
+            {
+                var result = _db.login.FromSqlRaw("[dbo].[Usr_Login]{0}", _emai).ToList();
+                //Console.WriteLine("dddddddddddddddddddddddddddddddddddddddddddd" + result[0].USR_ID);
+                if (result[0].USR_ID != "")
+                {
+                    if (_passwd == result[0].USR_PASSWORD.ToString())
+                    {
+                        return true;
+                    }                   
+                }
+                else
+                {
+                    return false;
+                }              
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return false;
         }
     }
 

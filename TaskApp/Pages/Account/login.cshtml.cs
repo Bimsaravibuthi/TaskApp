@@ -60,8 +60,8 @@ namespace TaskApp.Pages.Account
 
         public bool userValidate(string _emai, string _passwd)
         {
-            //var result = _db.login.FromSql($ "SELECT * FROM dbo.Usr_Login");
-
+            var result = _db.login.FromSqlRaw("[dbo].[Usr_Login]{0},{1}", _emai, _passwd).ToList();
+            Console.WriteLine("dddddddddddddddddddddddddddddddddddddddddddd" + result[0].USR_NAMEFULL);
             return true;
         }
     }

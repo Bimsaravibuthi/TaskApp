@@ -19,33 +19,33 @@
         <form method="post">
 
             @*@if (Model.tbl_Users.Count() > 0)
-                {
-                <table class="table table-striped border">
-                    <tr class="table-secondary">
-                        <th>
-                            <label asp-for="tbl_Users.FirstOrDefault().USR_NIC"></label>
-                        </th>
-                        <th>
-                            <label asp-for="Users.FirstOrDefault().USR_NAMEFULL"></label>
-                        </th>
-                    </tr>
-                    @foreach (var item in Model.Users)
-                    {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(m => item.USR_NIC)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.USR_NAMEFULL)
-                    </td>
-                </tr>
-                    }
-                </table>
-                }
-                else
-                {
-                    <p>No Data Available.</p>
-                }*@
+        {
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>
+                    <label asp-for="tbl_Users.FirstOrDefault().USR_NIC"></label>
+                </th>
+                <th>
+                    <label asp-for="Users.FirstOrDefault().USR_NAMEFULL"></label>
+                </th>
+            </tr>
+            @foreach (var item in Model.Users)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.USR_NIC)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.USR_NAMEFULL)
+            </td>
+        </tr>
+            }
+        </table>
+        }
+        else
+        {
+            <p>No Data Available.</p>
+        }*@
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input asp-for="tbl_User.USR_NAMEFULL" type="text" class="form-control" id="fullName" placeholder="Enter Full Name" required>
@@ -57,6 +57,10 @@
             <div class="form-group">
                 <label for="userID">User ID</label>
                 <input asp-for="tbl_User.USR_ID" type="text" class="form-control" id="userID" placeholder="Enter User ID" required>
+            </div>
+            <div class="form-group">
+                <label for="userPassword">Password</label>
+                <input asp-for="tbl_User.USR_PASSWORD" type="password" class="form-control" id="userPassword" placeholder="Enter Password" required>
             </div>
             <div class="form-group">
                 <label>User Level</label>

@@ -29,7 +29,7 @@ namespace TaskApp
             {
                 options.Cookie.Name = "MyCookieAuth";
                 options.AccessDeniedPath = "/Account/AccessDenied";
-                options.ExpireTimeSpan = TimeSpan.FromSeconds(15);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
             });
 
             services.AddAuthorization(options => {

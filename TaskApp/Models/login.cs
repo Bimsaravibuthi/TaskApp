@@ -11,5 +11,6 @@ namespace TaskApp.Models
         [Key]
         public string USR_ID { get; set; }
         public string USR_PASSWORD { get; set; }
+        public string USR_LEVEL { get; set; }
     }
 }

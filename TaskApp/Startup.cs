@@ -33,13 +33,18 @@ namespace TaskApp
             });
 
             services.AddAuthorization(options => {
+                options.AddPolicy("LoggedUsersOnly", policy => policy
+                   .RequireClaim("User_ID"));
+
                 options.AddPolicy("AdminOnly", policy => policy
+                    .RequireClaim("User_ID")
                     .RequireClaim("Admin", "True"));
 
                 options.AddPolicy("MustBelongToHRDepartment", policy => policy
                     .RequireClaim("Department", "HR"));
 
                 options.AddPolicy("HRManagerOnly", policy => policy
+                    .RequireClaim("User_ID")
                     .RequireClaim("Department", "HR")
                     .RequireClaim("Manager", "True"));
             });

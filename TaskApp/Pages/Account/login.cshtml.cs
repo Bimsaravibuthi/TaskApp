@@ -16,7 +16,7 @@ namespace TaskApp.Pages.Account
 {
     public class loginModel : PageModel
     {
-        string glob_UserLevel;
+        string glob_UserLevel, glob_UserName;
 
         private readonly ApplicationDbContext _db;
 
@@ -37,11 +37,8 @@ namespace TaskApp.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-
-
             if (!ModelState.IsValid) return Page();
 
-            //if (Credantial.UserName == "admin" && Credantial.Password == "password")
             if(userValidate(Credantial.UserName, Credantial.Password))
             {
                 string adminPermission = "";
@@ -51,7 +48,7 @@ namespace TaskApp.Pages.Account
                 }
 
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, "admin"),
+                    new Claim(ClaimTypes.Name, glob_UserName),
                     new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
                     new Claim("User_ID", Credantial.UserName),
                     new Claim("Department", "HR"),
@@ -73,20 +70,28 @@ namespace TaskApp.Pages.Account
             try
             {
                 var result = _db.login.FromSqlRaw("[dbo].[Usr_Login]{0}", _emai).ToList();
-                if (result[0].USR_ID != "")
+                if(result.Count != 0)
                 {
-                    if (_passwd == result[0].USR_PASSWORD.ToString())
+                    if (result[0].USR_ID != "")
                     {
-                        glob_UserLevel = result[0].USR_LEVEL.ToString();
-                        return true;
-                    }                   
+                        if (_passwd == result[0].USR_PASSWORD.ToString())
+                        {
+                            glob_UserLevel = result[0].USR_LEVEL.ToString();
+                            glob_UserName = result[0].USR_NAMEFULL.ToString();
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
                     return false;
-                }              
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

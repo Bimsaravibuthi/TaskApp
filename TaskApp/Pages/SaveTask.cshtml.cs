@@ -33,13 +33,16 @@ namespace TaskApp.Pages
 
         [BindProperty]
         public tbl_Taask tbl_Taask { get; set; }
-        public async Task<IActionResult> OnPost()
+
+        public async Task<IActionResult> OnPost(IFormFile file)
         {
+            byte[] supFile = FileConvert(file);
+
             if (ModelState.IsValid)
             {
+                tbl_Taask.TSK_SUPFILE = supFile;
                 await _db.tbl_Taask.AddAsync(tbl_Taask);
                 await _db.SaveChangesAsync();
-
 
                 return RedirectToPage("SaveTask");
             }
@@ -49,41 +52,24 @@ namespace TaskApp.Pages
             }
         }
 
-        //if(files != null)
-        //{
-        //    if (files.Length > 0)
-        //    {
-        //        var fileName = Path.GetFileName(files.FileName);
-        //        var fileExtension = Path.GetExtension(fileName);
-        //        var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
-        //    }
-        //}
+        public byte[] FileConvert(IFormFile _file)
+        {
+            byte[] convertedFile = null;
 
-        //if (files != null) //var result = _db.login.FromSqlRaw("[dbo].[Usr_Login]{0}", _emai).ToList();
-        //{
-        //    if (files.Length > 0)
-        //    {
-        //        var fileName = Path.GetFileName(files.FileName);
-        //        var fileExtension = Path.GetExtension(fileName);
-        //        var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
-        //        var objFiles = new tbl_Taask()
-        //        {
-        //            TSK_COMID = "KFL",
-        //            TSK_ID = "TSK003"
-        //        };
-        //        using (var target = new MemoryStream())
-        //        {
-        //            files.CopyTo(target);
-        //            objFiles.TSK_SUPFILE = target.ToArray();
-        //        }
+            if (_file != null)
+            {
+                if (_file.Length > 0)
+                {
+                    //var fileName = Path.GetFileName(file.FileName);
+                    //var fileExtension = Path.GetExtension(fileName);
+                    //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
-        //        var result = _db.tbl_Taask.ExecuteSqlRaw().ToString();
-
-        //        await _db.tbl_Taask.AddAsync(objFiles);
-        //        await _db.SaveChangesAsync();
-        //        return RedirectToPage("SaveTask");
-        //    }
-        //}
-        //return RedirectToPage("Error");
+                    var target = new MemoryStream();
+                    _file.CopyTo(target);
+                    convertedFile = target.ToArray();
+                }
+            }
+            return convertedFile;
+        }
     }
 }

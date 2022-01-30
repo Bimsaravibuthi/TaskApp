@@ -20,19 +20,19 @@ namespace TaskApp.Pages
             _db = db;
         }
 
-        public IEnumerable<tbl_User> tbl_Users { get; set; }
+        public IEnumerable<Tbl_User> Tbl_User_OnGet { get; set; }
         public async Task OnGet()
         {
-            tbl_Users = await _db.tbl_User.ToListAsync();
+            Tbl_User_OnGet = await _db.Tbl_User.ToListAsync();
         }
 
         [BindProperty]
-        public tbl_User tbl_User { get; set; }
+        public Tbl_User Tbl_User { get; set; }
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
-                await _db.tbl_User.AddAsync(tbl_User);
+                await _db.Tbl_User.AddAsync(Tbl_User);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("CreateUser");
             }

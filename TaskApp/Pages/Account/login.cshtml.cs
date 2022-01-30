@@ -39,7 +39,7 @@ namespace TaskApp.Pages.Account
         {
             if (!ModelState.IsValid) return Page();
 
-            if(userValidate(Credantial.UserName, Credantial.Password))
+            if(UserValidate(Credantial.UserName, Credantial.Password))
             {
                 string adminPermission = "";
                 if(glob_UserLevel.Equals("1"))
@@ -65,11 +65,11 @@ namespace TaskApp.Pages.Account
             return Page();
         }
 
-        public bool userValidate(string _emai, string _passwd)
+        public bool UserValidate(string _emai, string _passwd)
         {
             try
             {
-                var result = _db.login.FromSqlRaw("[dbo].[Usr_Login]{0}", _emai).ToList();
+                var result = _db.Login.FromSqlRaw("[dbo].[Usr_Login]{0}", _emai).ToList();
                 if(result.Count != 0)
                 {
                     if (result[0].USR_ID != "")

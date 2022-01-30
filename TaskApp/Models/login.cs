@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskApp.Models
 {
-    public class login
+    public class Login
     {
         [Key]
         public string USR_ID { get; set; }

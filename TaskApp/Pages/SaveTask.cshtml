@@ -26,15 +26,15 @@
 
             @if (Model.Max_Task_ID.Count() > 0)
             {
-                foreach (var item in Model.Max_Task_ID)
-                {
-                    Console.WriteLine(item.TSK_ID);
-
-                    <div class="form-group">
+                 foreach (var item in Model.Max_Task_ID)
+                 {
+                     int TaskId = Int32.Parse(item.TSK_ID);
+                     TaskId++;
+                     <div class="form-group">
                         <label for="taskID">Task ID</label>
-                        <input type="text" class="form-control" id="taskID" value="@Html.DisplayFor(m => item.TSK_ID)" readonly>
-                    </div>
-                }
+                        <input type="text" class="form-control" id="taskID" value="@Html.DisplayFor(m => TaskId)" readonly>
+                     </div>
+                 }
             }
 
             <div class="form-group">

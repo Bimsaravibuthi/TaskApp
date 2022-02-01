@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TaskApp.Models;
+using TaskApp.Security;
 
 namespace TaskApp.Pages.Account
 {
@@ -74,7 +75,7 @@ namespace TaskApp.Pages.Account
                 {
                     if (result[0].USR_ID != "")
                     {
-                        if (_passwd == result[0].USR_PASSWORD.ToString())
+                        if (_passwd == PWD_EN_DE.DecryptString(result[0].USR_PASSWORD.ToString()))
                         {
                             glob_UserLevel = result[0].USR_LEVEL.ToString();
                             glob_UserName = result[0].USR_NAMEFULL.ToString();

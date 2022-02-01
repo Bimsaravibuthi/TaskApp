@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TaskApp.Models;
+using TaskApp.Security;
 
 namespace TaskApp.Pages
 {
@@ -32,6 +33,8 @@ namespace TaskApp.Pages
         {
             if (ModelState.IsValid)
             {
+                Tbl_User.USR_PASSWORD = PWD_EN_DE.EncryptString(Tbl_User.USR_PASSWORD.ToString());
+                Tbl_User.USR_CREATEDATE = DateTime.Now;
                 await _db.Tbl_User.AddAsync(Tbl_User);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("CreateUser");

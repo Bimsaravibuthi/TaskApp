@@ -39,24 +39,11 @@ namespace TaskApp.Pages
         [BindProperty]
         public Tbl_Taask Tbl_Taask { get; set; }
 
-        public async Task<IActionResult> OnPost(List<IFormFile> file)
+        public async Task<IActionResult> OnPost(IFormFile file)
         {
             int TaskId = 0;
-
             var maxTaskId = GetMaxTaskId();
-            //byte[] supFile = FileConvert(file);
-
-            foreach (var item in file)
-            {
-                if (item.Length > 0)
-                {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        Tbl_Taask.TSK_SUPFILE = stream.ToArray();
-                    }
-                }
-            }
+            byte[] supFile = FileConvert(file);
 
             if (ModelState.IsValid)
             {
@@ -66,6 +53,7 @@ namespace TaskApp.Pages
                 }
                 TaskId++;
                 Tbl_Taask.TSK_ID = TaskId.ToString();
+                Tbl_Taask.TSK_SUPFILE = Convert.ToBase64String(supFile);
                 await _db.Tbl_Taask.AddAsync(Tbl_Taask);
                 await _db.SaveChangesAsync();
 
@@ -82,34 +70,23 @@ namespace TaskApp.Pages
             Max_Task_ID = _db.Max_Task_ID.FromSqlRaw("[dbo].[Select_Max_Tsk_Id]");
             return Max_Task_ID;
         }
-        public byte[] FileConvert(List<IFormFile> _file)
+        public byte[] FileConvert(IFormFile _file)
         {
             byte[] convertedFile = null;
 
-            foreach (var item in _file)
+            if (_file != null)
             {
-                if(item.Length > 0)
+                if (_file.Length > 0)
                 {
-                    using (var stream = new MemoryStream())
-                    {
-                        
-                    }
+                    //var fileName = Path.GetFileName(file.FileName);
+                    //var fileExtension = Path.GetExtension(fileName);
+                    //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+                    var target = new MemoryStream();
+                    _file.CopyTo(target);
+                    convertedFile = target.ToArray();
                 }
             }
-
-            //if (_file != null)
-            //{
-            //    if (_file.Length > 0)
-            //    {
-            //        //var fileName = Path.GetFileName(file.FileName);
-            //        //var fileExtension = Path.GetExtension(fileName);
-            //        //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
-
-            //        var target = new MemoryStream();
-            //        _file.CopyTo(target);
-            //        convertedFile = target.ToArray();
-            //    }
-            //}
             return convertedFile;
         }
     }

@@ -12,11 +12,11 @@ namespace TaskAPI.Controllers
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private TodoService _todoService;
+        private readonly ITodoRepository _todoService;
 
-        public TodosController()
+        public TodosController(ITodoRepository repository)
         {
-            _todoService = new TodoService();
+            _todoService = repository;
         }
         
         [HttpGet("{id?}")]

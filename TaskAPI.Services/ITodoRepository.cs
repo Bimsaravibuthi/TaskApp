@@ -7,7 +7,7 @@ using TaskAPI.Models;
 
 namespace TaskAPI.Services
 {
-    interface ITodoRepository
+    public interface ITodoRepository
     {
         public List<Todo> AllTodos();
     }

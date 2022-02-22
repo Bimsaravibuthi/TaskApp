@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskAPI.Models\TaskAPI.Models.csproj" />
+    <ProjectReference Include="..\TaskAPIDataAccess\TaskAPIDataAccess.csproj" />
   </ItemGroup>
 
 </Project>

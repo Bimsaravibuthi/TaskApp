@@ -35,7 +35,7 @@ namespace TaskAPI
             });
 
             //services.AddSingleton();//Only one instance for application 
-            services.AddScoped<ITodoRepository, TodoService>();   //Create new object per request
+            services.AddScoped<ITodoRepository, TodoSqlServerService>();   //Create new object per request
             //services.AddTransient(); //Always create a new object
         }
 

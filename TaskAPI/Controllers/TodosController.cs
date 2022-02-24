@@ -18,17 +18,31 @@ namespace TaskAPI.Controllers
         {
             _todoService = repository;
         }
+
+        [HttpGet]
+        public IActionResult GetTodos()
+        {
+            var todos = _todoService.GetAllTodos();
+            
+            if(todos is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(todos);
+        }
         
         [HttpGet("{id?}")]
-        public IActionResult GetTodos(int? id)
+        public IActionResult GetTodo(int id)
         {
-            var myTodos = _todoService.AllTodos();
+            var Todo = _todoService.GetTodo(id);
 
-            if (id is null) return Ok(myTodos);
+            if (Todo is null)
+            {
+                return NotFound();
+            }
 
-            myTodos = myTodos.Where(t => t.Id == id).ToList();
-
-            return Ok(myTodos);
+            return Ok(Todo);
         }
 
         //[HttpGet]   //Select

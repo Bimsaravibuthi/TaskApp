@@ -12,6 +12,8 @@ namespace TaskAPIDataAccess
     {
         public DbSet<Todo> Todos { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Taask> Taasks { get; set; }
+        public DbSet<Uuser> Uusers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

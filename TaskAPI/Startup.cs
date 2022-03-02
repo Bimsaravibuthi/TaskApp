@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Services.Authors;
 using TaskAPI.Services.Todos;
+using TaskAPI.Services.Users;
 
 namespace TaskAPI
 {
@@ -42,6 +43,7 @@ namespace TaskAPI
             //services.AddSingleton();//Only one instance for application 
             services.AddScoped<ITodoRepository, TodoSqlServerService>();   //Create new object per request
             services.AddScoped<IAuthorRepository, AuthorSqlServerService>();
+            services.AddScoped<IUserRepository, UserSqlServerService>();
             //services.AddTransient(); //Always create a new object
         }
 

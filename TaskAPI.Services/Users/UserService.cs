@@ -25,5 +25,15 @@ namespace TaskAPI.Services.Users
 
             return users;
         }
+
+        public List<Uuser> FilterAndSearchUsers(string userLevel)
+        {
+            return null;
+        }
+
+        public Uuser GetUser(string id)
+        {
+            return null;
+        }
     }
 }

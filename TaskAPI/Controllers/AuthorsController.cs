@@ -8,7 +8,7 @@ using TaskAPI.Services.Authors;
 
 namespace TaskAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authors")]
     [ApiController]
     public class AuthorsController : ControllerBase
     {

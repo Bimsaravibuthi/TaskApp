@@ -11,9 +11,14 @@ namespace TaskAPI.Services.Taasks
     public class TaaskSqlServerService : ITaasksRepository
     {
         private readonly TodoDbContext _context = new TodoDbContext();
-        public List<Taask> GetAllTaasks()
+        public List<Taask> GetAllTasks(string userId)
         {
-            return _context.Taasks.ToList();
+            return _context.Taasks.Where(t => t.TSK_CREATEUSER == userId).ToList();
+        }
+
+        public Taask GetTask(string userId, string id)
+        {
+            return _context.Taasks.FirstOrDefault(t => t.TSK_ID == id && t.TSK_CREATEUSER == userId);
         }
     }
 }

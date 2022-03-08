@@ -10,5 +10,7 @@ namespace TaskAPI.Services.Users
     public interface IUserRepository
     {
         public List<Uuser> GetAllUsers();
+        public List<Uuser> FilterAndSearchUsers(string userLevel);
+        public Uuser GetUser(string id);
     }
 }

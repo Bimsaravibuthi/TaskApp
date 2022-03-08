@@ -15,5 +15,22 @@ namespace TaskAPI.Services.Users
         {
             return _context.Uusers.ToList();
         }
+
+        public List<Uuser> FilterAndSearchUsers(string userLevel)
+        {
+            if(string.IsNullOrWhiteSpace(userLevel))
+            {
+                return GetAllUsers();
+            }
+
+            userLevel = userLevel.Trim();
+
+            return _context.Uusers.Where(t => t.USR_LEVEL == userLevel).ToList();
+        }
+
+        public Uuser GetUser(string id)
+        {
+            return _context.Uusers.Find(id);
+        }
     }
 }

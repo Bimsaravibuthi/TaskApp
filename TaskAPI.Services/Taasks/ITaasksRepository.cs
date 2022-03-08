@@ -9,6 +9,7 @@ namespace TaskAPI.Services.Taasks
 {
     public interface ITaasksRepository
     {
-        public List<Taask> GetAllTaasks();
+        public List<Taask> GetAllTasks(string userId);
+        public Taask GetTask(string userId, string id);
     }
 }

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Services.Authors;
+using TaskAPI.Services.Taasks;
 using TaskAPI.Services.Todos;
 using TaskAPI.Services.Users;
 
@@ -44,6 +45,7 @@ namespace TaskAPI
             services.AddScoped<ITodoRepository, TodoSqlServerService>();   //Create new object per request
             services.AddScoped<IAuthorRepository, AuthorSqlServerService>();
             services.AddScoped<IUserRepository, UserSqlServerService>();
+            services.AddScoped<ITaasksRepository, TaaskSqlServerService>();
             //services.AddTransient(); //Always create a new object
         }
 

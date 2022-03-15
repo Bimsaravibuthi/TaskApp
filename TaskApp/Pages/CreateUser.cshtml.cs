@@ -21,21 +21,21 @@ namespace TaskApp.Pages
             _db = db;
         }
 
-        public IEnumerable<Tbl_User> Tbl_User_OnGet { get; set; }
+        public IEnumerable<Uuser> Tbl_User_OnGet { get; set; }
         public async Task OnGet()
         {
-            Tbl_User_OnGet = await _db.Tbl_User.ToListAsync();
+            Tbl_User_OnGet = await _db.Uuser.ToListAsync();
         }
 
         [BindProperty]
-        public Tbl_User Tbl_User { get; set; }
+        public Uuser Tbl_User { get; set; }
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
                 Tbl_User.USR_PASSWORD = PWD_EN_DE.EncryptString(Tbl_User.USR_PASSWORD.ToString());
                 Tbl_User.USR_CREATEDATE = DateTime.Now;
-                await _db.Tbl_User.AddAsync(Tbl_User);
+                await _db.Uuser.AddAsync(Tbl_User);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("CreateUser");
             }

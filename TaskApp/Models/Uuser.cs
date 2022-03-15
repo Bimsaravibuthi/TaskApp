@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskApp.Models
 {
-    public class Tbl_User
+    public class Uuser
     {
         [Key]
         public string USR_ID { get; set; }

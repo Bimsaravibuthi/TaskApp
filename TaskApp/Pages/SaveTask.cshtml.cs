@@ -25,19 +25,19 @@ namespace TaskApp.Pages
             _db = db;
         }
 
-        public IEnumerable<Tbl_User> Tbl_Users { get; set; }
+        public IEnumerable<Uuser> Tbl_Users { get; set; }
         public IEnumerable<Max_Task_ID> Max_Task_ID { get; set; }
         public async Task OnGet()
         {
             var maxTaskId = GetMaxTaskId();
 
-            Tbl_Users = await _db.Tbl_User.ToListAsync();
+            Tbl_Users = await _db.Uuser.ToListAsync();
             Max_Task_ID = maxTaskId;
 
         }
 
         [BindProperty]
-        public Tbl_Taask Tbl_Taask { get; set; }
+        public Taask Tbl_Taask { get; set; }
 
         public async Task<IActionResult> OnPost(IFormFile file)
         {
@@ -54,7 +54,7 @@ namespace TaskApp.Pages
                 TaskId++;
                 Tbl_Taask.TSK_ID = TaskId.ToString();
                 Tbl_Taask.TSK_SUPFILE = Convert.ToBase64String(supFile);
-                await _db.Tbl_Taask.AddAsync(Tbl_Taask);
+                await _db.Taask.AddAsync(Tbl_Taask);
                 await _db.SaveChangesAsync();
 
                 return RedirectToPage("SaveTask");

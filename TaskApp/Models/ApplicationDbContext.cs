@@ -12,8 +12,8 @@ namespace TaskApp.Models
         {
 
         }
-        public DbSet<Tbl_User> Tbl_User { get; set; }
-        public DbSet<Tbl_Taask> Tbl_Taask { get; set; }
+        public DbSet<Uuser> Uuser { get; set; }
+        public DbSet<Taask> Taask { get; set; }
         public DbSet<Login> Login { get; set; }
         public DbSet<Max_Task_ID> Max_Task_ID { get; set; }
 

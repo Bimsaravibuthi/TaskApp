@@ -17,7 +17,7 @@ namespace TaskAPIDataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=localhost\\SQLEXPRESS;Database=MyToDoDb;Trusted_Connection=True;MultipleActiveResultSets=True";
+            var connectionString = "Server=DESKTOP-2C62J43\\SQLEXPRESS;Database=TASK_APP;Trusted_Connection=True;MultipleActiveResultSets=True";
             optionsBuilder.UseSqlServer(connectionString);
         }
 
